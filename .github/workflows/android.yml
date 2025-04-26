@@ -5,6 +5,7 @@ on:
     branches: [ "master" ]
   pull_request:
     branches: [ "master" ]
+  workflow_dispatch:
 
 jobs:
   build:
@@ -23,4 +24,10 @@ jobs:
     - name: Grant execute permission for gradlew
       run: chmod +x gradlew
     - name: Build with Gradle
-      run: ./gradlew assembleRelease
+      run: bash ./build.sh
+
+    - uses: actions/upload-artifact@v4
+      with:
+        name: JustTrustMe
+        path: bin/JustTrustMe.apk
+
