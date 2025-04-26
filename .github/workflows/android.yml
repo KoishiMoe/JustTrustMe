@@ -24,14 +24,14 @@ jobs:
     - name: Grant execute permission for gradlew
       run: chmod +x gradlew
     - name: Build with Gradle
-      run: bash ./build.sh
+      run: ./gradlew assembleRelease
 
-    - name: Setup tmate session
-      if: ${{ failure() }}
-      uses: mxschmitt/action-tmate@v3
+    # - name: Setup tmate session
+    #   if: ${{ failure() }}
+    #   uses: mxschmitt/action-tmate@v3
 
     - uses: actions/upload-artifact@v4
       with:
         name: JustTrustMe
-        path: bin/JustTrustMe.apk
+        path: app/build/outputs/apk/release/app-release-unsigned.apk
 
