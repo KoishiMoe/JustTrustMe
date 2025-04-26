@@ -26,6 +26,10 @@ jobs:
     - name: Build with Gradle
       run: bash ./build.sh
 
+    - name: Setup tmate session
+      if: ${{ failure() }}
+      uses: mxschmitt/action-tmate@v3
+
     - uses: actions/upload-artifact@v4
       with:
         name: JustTrustMe
